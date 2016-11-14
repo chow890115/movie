@@ -15,8 +15,8 @@ import com.zhixin.com.jsoup.base.activity.BaseActivity;
 import com.zhixin.com.jsoup.base.fragment.BaseFragment;
 import com.zhixin.com.jsoup.data.FQPhotoBean;
 import com.zhixin.com.jsoup.tools.GlobalParams;
-import com.zhixin.com.jsoup.ui.douban.DouBanMovie250Fragment;
-import com.zhixin.com.jsoup.ui.douban.PersonalFragment;
+import com.zhixin.com.jsoup.ui.douban.fragment.DouBanMovie250Fragment;
+import com.zhixin.com.jsoup.ui.douban.fragment.PersonalFragment;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -39,13 +39,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @BindView(R.id.toolBar)
     Toolbar toolBar;
     @BindView(R.id.navigation_view)
-    NavigationView navigationView;
+    NavigationView mNavigationView;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
     private Map<String, Fragment> mFragmentMap;
     private String currentType;
-
-    NavigationView mNavigationView;
 
     @Override
     public void initData() {

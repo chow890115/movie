@@ -1,10 +1,11 @@
-package com.zhixin.com.jsoup.ui.douban;
+package com.zhixin.com.jsoup.ui.douban.presenter;
 
 import com.zhixin.com.jsoup.base.presenter.BasePresenterImpl;
 import com.zhixin.com.jsoup.model.IDouban250Model;
 import com.zhixin.com.jsoup.network.HttpUtil;
 import com.zhixin.com.jsoup.data.Douban250Bean;
 import com.zhixin.com.jsoup.model.impl.Douban250Model;
+import com.zhixin.com.jsoup.ui.douban.view.DoubanView;
 
 import rx.Subscriber;
 

@@ -1,4 +1,4 @@
-package com.zhixin.com.jsoup.ui.douban;
+package com.zhixin.com.jsoup.ui.douban.view;
 
 import com.zhixin.com.jsoup.base.view.IBaseView;
 import com.zhixin.com.jsoup.data.Douban250Bean;

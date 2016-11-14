@@ -1,5 +1,6 @@
-package com.zhixin.com.jsoup.ui.douban;
+package com.zhixin.com.jsoup.ui.douban.fragment;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,10 @@ import com.zhixin.com.jsoup.base.adapter.BaseViewHolder;
 import com.zhixin.com.jsoup.base.fragment.BaseMvpFrgament;
 import com.zhixin.com.jsoup.data.Douban250Bean;
 import com.zhixin.com.jsoup.data.Douban250SubjectsBean;
+import com.zhixin.com.jsoup.tools.GlobalParams;
+import com.zhixin.com.jsoup.ui.douban.activity.MovieDetailActivity;
+import com.zhixin.com.jsoup.ui.douban.presenter.DouBan250Presenter;
+import com.zhixin.com.jsoup.ui.douban.view.DoubanView;
 
 import java.util.List;
 
@@ -65,11 +70,11 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan25
             }
         } else {
             //刷新请求
-            if(adapter==null){
+            if (adapter == null) {
                 initRecyclerViewLayoutManager();
                 newAdapter(bean.getSubjects());
                 mRecyclerView.setAdapter(adapter);
-            }else{
+            } else {
                 adapter.setNewData(bean.getSubjects());
             }
             mSwipeRefreshLayout.setRefreshing(false);
@@ -83,7 +88,9 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan25
         adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListeners<Douban250SubjectsBean>() {
             @Override
             public void onItemClick(BaseViewHolder viewHolder, Douban250SubjectsBean data) {
-
+                Intent intent = new Intent(context, MovieDetailActivity.class);
+                intent.putExtra(GlobalParams.MOVIE_DETAIL,data.getId());
+                context.startActivity(intent);
             }
         });
         adapter.setOnLoadMoreListener(new BaseAdapter.OnLoadMoreListener() {
@@ -117,7 +124,7 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan25
     @Override
     public void onRefresh() {
         isLoadMore = false;
-        start=0;
+        start = 0;
         initData();
     }
 }

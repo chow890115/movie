@@ -9,13 +9,14 @@ import com.zhixin.com.jsoup.base.presenter.BasePresenterImpl;
  */
 
 public abstract class BaseMvpActivity<V, P extends BasePresenterImpl> extends BaseActivity {
-    private P presenter;
+    protected P presenter;
 
-    abstract P initPresenter();
+    protected abstract P initPresenter();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presenter=initPresenter();
         presenter.attach((V)this);
     }
     @Override

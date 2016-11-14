@@ -5,7 +5,7 @@ package com.zhixin.com.jsoup.data;
  */
 
 public class Douban250SubjectsBean {
-    private String id;//条目ID
+    private int id;//条目ID
     private String title;//中文名
     private String original_title;//原名
     private String alt;//条目URL
@@ -14,11 +14,11 @@ public class Douban250SubjectsBean {
     private String subtype;//条目分类 movie photo等
     private DoubanRating rating;//豆瓣评分
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

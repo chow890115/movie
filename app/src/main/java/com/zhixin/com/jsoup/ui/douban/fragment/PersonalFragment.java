@@ -1,4 +1,4 @@
-package com.zhixin.com.jsoup.ui.douban;
+package com.zhixin.com.jsoup.ui.douban.fragment;
 
 import android.view.View;
 

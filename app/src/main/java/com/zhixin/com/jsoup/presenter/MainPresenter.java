@@ -1,9 +1,8 @@
 package com.zhixin.com.jsoup.presenter;
 
 import com.zhixin.com.jsoup.base.presenter.BasePresenterImpl;
-import com.zhixin.com.jsoup.model.impl.MainModelImpl;
 import com.zhixin.com.jsoup.model.MainModel;
-import com.zhixin.com.jsoup.ui.view.MainView;
+import com.zhixin.com.jsoup.model.impl.MainModelImpl;
 
 import rx.Subscriber;
 
@@ -12,7 +11,7 @@ import rx.Subscriber;
  * Created by zhangwenxing on 2016/10/28.
  */
 
-public class MainPresenter extends BasePresenterImpl<MainView> {
+public class MainPresenter extends BasePresenterImpl{
     private MainModel model;
 
     public MainPresenter() {
@@ -33,7 +32,7 @@ public class MainPresenter extends BasePresenterImpl<MainView> {
 
             @Override
             public void onNext(String s) {
-                view.onSuccess();
+//                view.onSuccess();
             }
         });
     }
