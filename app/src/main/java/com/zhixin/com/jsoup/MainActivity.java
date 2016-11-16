@@ -173,7 +173,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             ft.hide(mFragmentMap.get(lastType));
             ft.show(mFragmentMap.get(type));
             ft.commit();
-            fragment.onDestroy();
         }
     }
 

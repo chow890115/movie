@@ -15,7 +15,7 @@ import com.zhixin.com.jsoup.ui.douban.presenter.MovieDetailView;
 
 import butterknife.BindView;
 
-public class MovieDetailActivity extends BaseMvpActivity<MovieDetailView, MovieDetailPresnter> implements MovieDetailView {
+public class MovieDetailActivity extends BaseMvpActivity<MovieDetailView, MovieDetailPresnter> implements MovieDetailView<MovieDetailBean> {
 
     @BindView(R.id.head_iv)
     ImageView mHeadIv;

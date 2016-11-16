@@ -15,9 +15,9 @@ public abstract class BaseMvpActivity<V, P extends BasePresenterImpl> extends Ba
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         presenter=initPresenter();
         presenter.attach((V)this);
+        super.onCreate(savedInstanceState);
     }
     @Override
     protected void onDestroy() {

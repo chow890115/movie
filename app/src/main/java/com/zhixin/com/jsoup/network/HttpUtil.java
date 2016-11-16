@@ -1,5 +1,6 @@
 package com.zhixin.com.jsoup.network;
 
+import com.zhixin.com.jsoup.BuildConfig;
 import com.zhixin.com.jsoup.tools.GlobalParams;
 import com.zhixin.com.jsoup.tools.ZhuoXinToast;
 
@@ -40,7 +41,6 @@ public class HttpUtil {
     };
 
 
-
     //Retrofit异常处理
     public static void resolveError(Throwable e) {
         if (e instanceof HttpException) {
@@ -78,7 +78,12 @@ public class HttpUtil {
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS) //
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS) //
                 .addInterceptor(mTokenInterceptor);
-
+//        //debug模式打印log
+        if (BuildConfig.LOG_DEBUG) {
+            HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            okHttpClient.interceptors().add(httpLoggingInterceptor);
+        }
 
         return okHttpClient;
     }

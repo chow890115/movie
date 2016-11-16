@@ -21,5 +21,5 @@ public interface APIService {
     Observable<Douban250Bean> getDouban250Data(@Query("count") int count, @Query("start") int start);
 
     @GET("/v2/movie/subject/{id}")
-    Observable<MovieDetailBean> getMovieDetail(@Query("id") int id);
+    Observable<MovieDetailBean> getMovieDetail(@Path("id") int id);
 }

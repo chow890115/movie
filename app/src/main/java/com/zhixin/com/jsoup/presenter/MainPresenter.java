@@ -11,7 +11,7 @@ import rx.Subscriber;
  * Created by zhangwenxing on 2016/10/28.
  */
 
-public class MainPresenter extends BasePresenterImpl{
+public class MainPresenter extends BasePresenterImpl {
     private MainModel model;
 
     public MainPresenter() {
@@ -19,7 +19,7 @@ public class MainPresenter extends BasePresenterImpl{
     }
 
     public void getFQPhotoDataList(String photoUrl) {
-        mSubscription = model.requestPhoto(photoUrl).subscribe(new Subscriber<String>() {
+        addSubscription(model.requestPhoto(photoUrl).subscribe(new Subscriber<String>() {
             @Override
             public void onCompleted() {
 
@@ -32,9 +32,8 @@ public class MainPresenter extends BasePresenterImpl{
 
             @Override
             public void onNext(String s) {
-//                view.onSuccess();
             }
-        });
+        }));
     }
 
 

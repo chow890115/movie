@@ -24,11 +24,11 @@ import java.util.List;
  * Created by zhangwenxing on 2016/11/9.
  */
 
-public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan250Presenter> implements DoubanView, SwipeRefreshLayout.OnRefreshListener {
+public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan250Presenter> implements DoubanView<Douban250Bean>, SwipeRefreshLayout.OnRefreshListener {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private DoubanMoview250Adapter adapter;
-    private boolean isLoadMore = false;
+    private boolean isLoadMore;
     private int start = 0;
 
 
@@ -89,7 +89,7 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan25
             @Override
             public void onItemClick(BaseViewHolder viewHolder, Douban250SubjectsBean data) {
                 Intent intent = new Intent(context, MovieDetailActivity.class);
-                intent.putExtra(GlobalParams.MOVIE_DETAIL,data.getId());
+                intent.putExtra(GlobalParams.MOVIE_DETAIL, data.getId());
                 context.startActivity(intent);
             }
         });
