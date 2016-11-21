@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="220dp"
+              android:layout_height="wrap_content"
               android:layout_margin="4dp"
               android:gravity="center_horizontal"
               android:orientation="vertical">
 
     <ImageView
-        android:scaleType="centerCrop"
         android:id="@+id/movie250_recycler_item_title_iv"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:scaleType="centerCrop"
         android:src="@mipmap/test"/>
 
     <TextView
-        android:ellipsize="end"
         android:id="@+id/movie250_recycler_item_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
         android:text="张三"
         android:textColor="#000000"
         android:textSize="16sp"/>
+
+    <RatingBar
+        android:id="@+id/moview_250_ratingbar"
+        style="@android:style/Widget.Holo.Light.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:numStars="5"/>
 </LinearLayout>

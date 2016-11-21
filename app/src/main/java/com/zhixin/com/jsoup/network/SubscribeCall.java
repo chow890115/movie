@@ -70,6 +70,8 @@ public class SubscribeCall<T, V extends IBaseView> extends Subscriber<T> {
         }
     }
 
+
+
     @Override
     public void onCompleted() {
         if (isSimpleSubscribe)
@@ -97,8 +99,9 @@ public class SubscribeCall<T, V extends IBaseView> extends Subscriber<T> {
     @Override
     public void onNext(T t) {
         baseView.onSuccess(t);
-        if (isSimpleSubscribe)
+        if (isSimpleSubscribe) {
             simpleSusbscribe.onNext(t);
+        }
         else if(onNext!=null)
             onNext.call(t);
     }
@@ -113,7 +116,7 @@ public class SubscribeCall<T, V extends IBaseView> extends Subscriber<T> {
         void onStart();
     }
 
-    static class SimpleSubscribe<T> implements SimpleSubscripbe<T> {
+    public static class SimpleSubscribe<T> implements SimpleSubscripbe<T> {
 
         @Override
         public void onNext(T data) {

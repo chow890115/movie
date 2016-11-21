@@ -2,6 +2,7 @@ package com.zhixin.com.jsoup.adapter;
 
 import android.content.Context;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -30,6 +31,8 @@ public class DoubanMoview250Adapter extends BaseAdapter<Douban250SubjectsBean> {
     protected void convert(BaseViewHolder holder, Douban250SubjectsBean data) {
         ImageView imageView = holder.getView(R.id.movie250_recycler_item_title_iv);
         TextView tv = holder.getView(R.id.movie250_recycler_item_title_tv);
+        RatingBar ratingBar = holder.getView(R.id.moview_250_ratingbar);
+        ratingBar.setRating(data.getRating().getAverage() / 2);
         tv.setText(data.getTitle());
         Picasso.with(mContext).load(data.getImages().getLarge()).error(R.mipmap.test).into(imageView);
     }
