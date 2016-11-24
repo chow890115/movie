@@ -17,7 +17,6 @@ public abstract class BaseMvpFrgament<V, P extends BasePresenterImpl> extends Ba
         super.onActivityCreated(savedInstanceState);
         mPresenter = initPresenter();
         mPresenter.attach((V) this);
-        initData();
     }
 
     @Override

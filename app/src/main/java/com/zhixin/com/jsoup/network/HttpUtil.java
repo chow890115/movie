@@ -60,9 +60,9 @@ public class HttpUtil {
     }
 
     public static <S> S createService(Class<S> serviceClass, String baseUrl) {
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
+//        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+//        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())

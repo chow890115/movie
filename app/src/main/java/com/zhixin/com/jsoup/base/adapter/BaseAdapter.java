@@ -194,6 +194,12 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         startLoadMore(recyclerView, layoutManager);
     }
 
+    //是否正在加载中
+    private boolean isLoading;
+
+    public void isLoading(boolean isLoading) {
+        this.isLoading = isLoading;
+    }
 
     /**
      * 判断列表是否滑动到底部
@@ -212,8 +218,11 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     //滑动静止
-                    if ( findLastVisibleItemPosition(layoutManager) + 1 == getItemCount()) {
-                        scrollLoadMore();
+                    if (findLastVisibleItemPosition(layoutManager) + 1 == getItemCount()) {
+                        if (!isLoading) {
+                            //避免重复多次请求
+                            scrollLoadMore();
+                        }
                     }
                 }
             }
@@ -222,9 +231,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 //滑动中
-                if (findLastVisibleItemPosition(layoutManager) + 1 == getItemCount()) {
-                    scrollLoadMore();
-                }
             }
         });
     }

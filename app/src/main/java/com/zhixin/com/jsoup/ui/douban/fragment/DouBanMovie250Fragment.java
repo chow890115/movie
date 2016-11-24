@@ -1,8 +1,8 @@
 package com.zhixin.com.jsoup.ui.douban.fragment;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -16,21 +16,36 @@ import com.zhixin.com.jsoup.data.Douban250SubjectsBean;
 import com.zhixin.com.jsoup.tools.GlobalParams;
 import com.zhixin.com.jsoup.ui.douban.activity.MovieDetailActivity;
 import com.zhixin.com.jsoup.ui.douban.presenter.DouBan250Presenter;
+import com.zhixin.com.jsoup.ui.douban.scroll.FastGridLayoutManager;
 import com.zhixin.com.jsoup.ui.douban.view.DoubanView;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by zhangwenxing on 2016/11/9.
  */
 
 public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan250Presenter> implements DoubanView<Douban250Bean>, SwipeRefreshLayout.OnRefreshListener {
-    private SwipeRefreshLayout mSwipeRefreshLayout;
-    private RecyclerView mRecyclerView;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
+    @BindView(R.id.douban_250_swipe_refresh)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.douban_250_recyclerview)
+    RecyclerView mRecyclerView;
     private DoubanMoview250Adapter adapter;
     private boolean isLoadMore;
     private int start = 0;
 
+    @OnClick(R.id.fab)
+    void fabonclick() {
+        if (mRecyclerView != null && mRecyclerView.getAdapter() != null) {
+            mRecyclerView.smoothScrollToPosition(0);
+//            mRecyclerView.scrollTo(0, 0);
+        }
+    }
 
     @Override
     public int initFragmantLayout() {
@@ -39,13 +54,12 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan25
 
     @Override
     protected void initView(View view) {
-        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.douban_250_swipe_refresh);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.douban_250_recyclerview);
         initListen();
         mSwipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(true);
+                initData();
             }
         });
     }
@@ -62,6 +76,7 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan25
     @Override
     public void onSuccess(Douban250Bean bean) {
         if (isLoadMore) {
+            adapter.isLoading(false);
             adapter.setLoadMoreData(bean.getSubjects());
             if (bean.getSubjects().size() == 0 || bean.getSubjects() == null) {
                 //数据请求完毕 已加载全部 在这设置加载完成的画面
@@ -97,14 +112,28 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan25
             @Override
             public void onLoadMore(boolean isReload) {
                 isLoadMore = true;
+                adapter.isLoading(true);
                 initData();
             }
         });
     }
 
+
     private void initRecyclerViewLayoutManager() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 3);
+        final FastGridLayoutManager gridLayoutManager = new FastGridLayoutManager(context, 3);
         mRecyclerView.setLayoutManager(gridLayoutManager);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (dy > 0) {
+                    mFab.show();
+                }
+                if (dy < 0)
+                    mFab.hide();
+            }
+        });
     }
 
     @Override
