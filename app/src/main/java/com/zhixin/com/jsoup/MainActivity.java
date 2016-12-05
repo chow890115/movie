@@ -15,7 +15,7 @@ import com.zhixin.com.jsoup.base.activity.BaseActivity;
 import com.zhixin.com.jsoup.base.fragment.BaseFragment;
 import com.zhixin.com.jsoup.data.FQPhotoBean;
 import com.zhixin.com.jsoup.tools.GlobalParams;
-import com.zhixin.com.jsoup.ui.douban.fragment.DouBanMovie250Fragment;
+import com.zhixin.com.jsoup.ui.douban.fragment.DoubanHomeFragment;
 import com.zhixin.com.jsoup.ui.douban.fragment.PersonalFragment;
 
 import org.jsoup.Jsoup;
@@ -110,7 +110,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mNavigationView.setNavigationItemSelectedListener(this);
         mNavigationView.setCheckedItem(R.id.navigation_douban_movie);
         mFragmentMap = new HashMap<>();
-        beginReplace(new DouBanMovie250Fragment(), "豆瓣");
+        beginReplace(new DoubanHomeFragment(), "豆瓣");
     }
 
     @Override
@@ -133,7 +133,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_douban_movie:
-                beginReplace(new DouBanMovie250Fragment(), "豆瓣");
+                beginReplace(new DoubanHomeFragment(), "豆瓣");
                 break;
 
             case R.id.navigation_item_intimity:

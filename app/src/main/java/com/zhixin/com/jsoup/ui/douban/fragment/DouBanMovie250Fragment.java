@@ -102,7 +102,7 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan25
         adapter.setLoadingView(R.layout.recycler_foot_item);
         adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListeners<Douban250SubjectsBean>() {
             @Override
-            public void onItemClick(BaseViewHolder viewHolder, Douban250SubjectsBean data) {
+            public void onItemClick(BaseViewHolder viewHolder, Douban250SubjectsBean data, int positon) {
                 Intent intent = new Intent(context, MovieDetailActivity.class);
                 intent.putExtra(GlobalParams.MOVIE_DETAIL, data.getId());
                 context.startActivity(intent);

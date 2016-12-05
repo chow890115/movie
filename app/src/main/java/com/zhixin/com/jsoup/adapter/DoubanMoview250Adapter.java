@@ -22,9 +22,6 @@ public class DoubanMoview250Adapter extends BaseAdapter<Douban250SubjectsBean> {
 
     public DoubanMoview250Adapter(Context context, List<Douban250SubjectsBean> datas, boolean isOpenLoadMore) {
         super(context, datas, isOpenLoadMore);
-        this.mDatas = datas;
-        this.mContext = context;
-        this.mOpenLoadMore = isOpenLoadMore;
     }
 
     @Override
@@ -34,7 +31,7 @@ public class DoubanMoview250Adapter extends BaseAdapter<Douban250SubjectsBean> {
         RatingBar ratingBar = holder.getView(R.id.moview_250_ratingbar);
         ratingBar.setRating(data.getRating().getAverage() / 2);
         tv.setText(data.getTitle());
-        Picasso.with(mContext).load(data.getImages().getLarge()).error(R.mipmap.test).into(imageView);
+        Picasso.with(mContext).load(data.getImages().getLarge()).error(R.mipmap.image_error).into(imageView);
     }
 
     @Override

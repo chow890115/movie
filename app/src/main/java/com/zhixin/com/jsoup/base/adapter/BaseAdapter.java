@@ -44,7 +44,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public interface OnItemClickListeners<T> {
-        void onItemClick(BaseViewHolder viewHolder, T data);
+        void onItemClick(BaseViewHolder viewHolder, T data, int position);
     }
 
     @Override
@@ -93,7 +93,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mItemClickListener.onItemClick(viewHolder, mDatas.get(position));
+                mItemClickListener.onItemClick(viewHolder, mDatas.get(position), position);
             }
         });
     }
