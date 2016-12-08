@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.zhixin.com.jsoup.R;
+import com.zhixin.com.jsoup.data.MovieDetailBean;
 
 import java.util.List;
 
@@ -23,13 +24,12 @@ import uk.co.senab.photoview.PhotoViewAttacher;
  */
 
 public class CastsImagesPageAdapter extends PagerAdapter {
-    private List<String> images;
+    private List<MovieDetailBean.CastsBean> images;
     private Context context;
     private SparseArray<View> views;
 
 
-
-    public  CastsImagesPageAdapter(Context context, List<String> images) {
+    public CastsImagesPageAdapter(Context context, List<MovieDetailBean.CastsBean> images) {
         this.images = images;
         this.context = context;
         views = new SparseArray<>();
@@ -53,7 +53,7 @@ public class CastsImagesPageAdapter extends PagerAdapter {
             ImageView imageView = (ImageView) view.findViewById(R.id.item_vp_image);
             final PhotoViewAttacher photoViewAttacher = new PhotoViewAttacher(imageView);
             Picasso.with(context)
-                    .load(images.get(position))
+                    .load(images.get(position).getAvatars().getLarge())
                     .placeholder(R.mipmap.image_loading)
                     .config(Bitmap.Config.RGB_565)
                     .error(R.mipmap.image_error).into(imageView, new Callback() {

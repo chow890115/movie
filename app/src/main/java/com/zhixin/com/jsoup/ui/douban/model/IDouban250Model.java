@@ -1,6 +1,6 @@
-package com.zhixin.com.jsoup.model;
+package com.zhixin.com.jsoup.ui.douban.model;
 
-import com.zhixin.com.jsoup.data.Douban250Bean;
+import com.zhixin.com.jsoup.ui.douban.entity.Douban250Bean;
 
 import rx.Observable;
 

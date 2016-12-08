@@ -2,8 +2,8 @@ package com.zhixin.com.jsoup.ui.douban.presenter;
 
 import com.zhixin.com.jsoup.base.presenter.BasePresenterImpl;
 import com.zhixin.com.jsoup.data.MovieDetailBean;
-import com.zhixin.com.jsoup.network.HttpUtil;
 import com.zhixin.com.jsoup.network.SubscribeCall;
+import com.zhixin.com.jsoup.network.TransformerUtil;
 
 /**
  * Created by zhangstar on 2016/11/14.
@@ -18,7 +18,7 @@ public class MovieDetailPresnter extends BasePresenterImpl<MovieDetailView<Movie
 
     public void getDetailModel(int id) {
         addSubscription(model.getMovieDetail(id)
-                .compose(HttpUtil.<MovieDetailBean>composeResponse())
+                .compose(TransformerUtil.<MovieDetailBean>SchedulersCompose())
                 .subscribe(new SubscribeCall<>(view)));
     }
 }

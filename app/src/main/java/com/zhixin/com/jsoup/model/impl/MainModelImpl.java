@@ -1,7 +1,7 @@
 package com.zhixin.com.jsoup.model.impl;
 
-import com.zhixin.com.jsoup.network.HttpUtil;
 import com.zhixin.com.jsoup.model.MainModel;
+import com.zhixin.com.jsoup.network.TransformerUtil;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,10 +17,10 @@ import rx.Subscriber;
  * Created by zhangwenxing on 2016/10/28.
  */
 
-public class MainModelImpl implements MainModel{
+public class MainModelImpl implements MainModel {
     @Override
     public Observable<String> requestPhoto(final String url) {
-        return    Observable.create(new Observable.OnSubscribe<String>() {
+        return Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 try {
@@ -39,6 +39,6 @@ public class MainModelImpl implements MainModel{
                 }
 
             }
-        }).compose(HttpUtil.<String>composeResponse());
+        }).compose(TransformerUtil.<String>SchedulersCompose());
     }
 }

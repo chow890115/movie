@@ -1,4 +1,4 @@
-package com.zhixin.com.jsoup.data;
+package com.zhixin.com.jsoup.ui.douban.entity;
 
 import java.util.List;
 

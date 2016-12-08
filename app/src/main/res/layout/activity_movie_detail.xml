@@ -6,6 +6,8 @@
     android:id="@+id/activity_movie_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
+
     tools:context=".ui.douban.activity.MovieDetailActivity">
 
 
@@ -13,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -89,6 +91,7 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -98,10 +101,7 @@
 
 
             <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:elevation="4dp">
+                style="@style/cardViewMarg20">
 
                 <TextView
                     android:id="@+id/moview_detail_info_tv"
@@ -111,17 +111,62 @@
 
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                style="@style/cardViewMarg20">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="电影简介"
+                        android:textSize="@dimen/two_code_text_size"/>
+
+                    <TextView
+                        android:id="@+id/simple_detail_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:lineSpacingExtra="5dp"
+                        android:textColor="@color/colorBlack1"
+                        android:textSize="@dimen/three_code_text_size_two"/>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="演员"
+                    android:textSize="@dimen/two_code_text_size"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/horizontal_recyclerview"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp">
+                    android:layout_height="250dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
                 </android.support.v7.widget.RecyclerView>
             </LinearLayout>
-            
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

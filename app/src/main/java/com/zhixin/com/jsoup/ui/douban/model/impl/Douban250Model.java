@@ -1,7 +1,7 @@
-package com.zhixin.com.jsoup.model.impl;
+package com.zhixin.com.jsoup.ui.douban.model.impl;
 
-import com.zhixin.com.jsoup.data.Douban250Bean;
-import com.zhixin.com.jsoup.model.IDouban250Model;
+import com.zhixin.com.jsoup.ui.douban.entity.Douban250Bean;
+import com.zhixin.com.jsoup.ui.douban.model.IDouban250Model;
 import com.zhixin.com.jsoup.network.HttpUtil;
 import com.zhixin.com.jsoup.tools.GlobalParams;
 

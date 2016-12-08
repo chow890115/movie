@@ -5,8 +5,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+
 import com.zhixin.com.jsoup.base.application.BaseApplication;
 
 import butterknife.ButterKnife;
@@ -48,6 +50,16 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

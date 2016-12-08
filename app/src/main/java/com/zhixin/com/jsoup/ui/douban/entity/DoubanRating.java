@@ -1,4 +1,4 @@
-package com.zhixin.com.jsoup.data;
+package com.zhixin.com.jsoup.ui.douban.entity;
 
 /**
  * Created by zhangwenxing on 2016/11/10.

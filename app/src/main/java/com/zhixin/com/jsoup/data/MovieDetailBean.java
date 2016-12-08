@@ -1,12 +1,13 @@
 package com.zhixin.com.jsoup.data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by zhangstar on 2016/11/14.
  */
 
-public class MovieDetailBean {
+public class MovieDetailBean implements Serializable {
 
     /**
      * rating : {"max":10,"average":9.4,"stars":"50","min":0}
@@ -283,7 +284,7 @@ public class MovieDetailBean {
         this.aka = aka;
     }
 
-    public static class RatingBean {
+    public static class RatingBean implements Serializable {
         /**
          * max : 10
          * average : 9.4
@@ -365,7 +366,7 @@ public class MovieDetailBean {
         }
     }
 
-    public static class CastsBean {
+    public static class CastsBean implements Serializable {
         /**
          * alt : https://movie.douban.com/celebrity/1025182/
          * avatars : {"small":"https://img3.doubanio.com/img/celebrity/small/8833.jpg","large":"https://img3.doubanio.com/img/celebrity/large/8833.jpg","medium":"https://img3.doubanio.com/img/celebrity/medium/8833.jpg"}
@@ -410,7 +411,7 @@ public class MovieDetailBean {
             this.id = id;
         }
 
-        public static class AvatarsBean {
+        public static class AvatarsBean implements Serializable {
             /**
              * small : https://img3.doubanio.com/img/celebrity/small/8833.jpg
              * large : https://img3.doubanio.com/img/celebrity/large/8833.jpg

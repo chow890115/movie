@@ -1,4 +1,4 @@
-package com.zhixin.com.jsoup.adapter;
+package com.zhixin.com.jsoup.ui.douban.adapter;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso;
 import com.zhixin.com.jsoup.R;
 import com.zhixin.com.jsoup.base.adapter.BaseAdapter;
 import com.zhixin.com.jsoup.base.adapter.BaseViewHolder;
-import com.zhixin.com.jsoup.data.Douban250SubjectsBean;
+import com.zhixin.com.jsoup.ui.douban.entity.Douban250SubjectsBean;
 
 import java.util.List;
 

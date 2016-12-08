@@ -1,6 +1,7 @@
 package com.zhixin.com.jsoup.ui.douban.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,11 +19,12 @@ import com.zhixin.com.jsoup.base.adapter.BaseAdapter;
 import com.zhixin.com.jsoup.base.adapter.BaseViewHolder;
 import com.zhixin.com.jsoup.data.MovieDetailBean;
 import com.zhixin.com.jsoup.tools.GlobalParams;
+import com.zhixin.com.jsoup.tools.RecyclerViewMarginDecoration;
 import com.zhixin.com.jsoup.ui.douban.adapter.MovieDetailCastsAdapter;
 import com.zhixin.com.jsoup.ui.douban.presenter.MovieDetailPresnter;
 import com.zhixin.com.jsoup.ui.douban.presenter.MovieDetailView;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -47,6 +49,8 @@ public class MovieDetailActivity extends BaseMvpActivity<MovieDetailView, MovieD
     CoordinatorLayout mActivityMovieDetail;
     @BindView(R.id.horizontal_recyclerview)
     RecyclerView mHorizontalRecyclerview;
+    @BindView(R.id.simple_detail_tv)
+    TextView mSimpleDetailTv;
 
     @Override
     public void initData() {
@@ -58,6 +62,7 @@ public class MovieDetailActivity extends BaseMvpActivity<MovieDetailView, MovieD
     public void initView() {
         initToolBar();
         mHorizontalRecyclerview.setNestedScrollingEnabled(false);
+        mHorizontalRecyclerview.addItemDecoration(new RecyclerViewMarginDecoration(getResources().getDimensionPixelSize(R.dimen.recyclerview_item_margin_decoration)));
     }
 
     private void initToolBar() {
@@ -106,17 +111,16 @@ public class MovieDetailActivity extends BaseMvpActivity<MovieDetailView, MovieD
             @Override
             public void onItemClick(BaseViewHolder viewHolder, MovieDetailBean.CastsBean data, int position) {
                 List<MovieDetailBean.CastsBean> beanList = bean.getCasts();
-                List<String> castsImages = new ArrayList<String>();
-                for (MovieDetailBean.CastsBean castsBean : beanList) {
-                    castsImages.add(castsBean.getAvatars().getLarge());
-                }
                 Intent intent = new Intent(MovieDetailActivity.this, CastsImagesActivity.class);
-                intent.putStringArrayListExtra("images", (ArrayList<String>) castsImages);
+                Bundle bundle = new Bundle();
                 intent.putExtra("position", position);
+                bundle.putSerializable("casts", (Serializable) beanList);
+                intent.putExtras(bundle);
                 MovieDetailActivity.this.startActivity(intent);
             }
         });
         mHorizontalRecyclerview.setAdapter(adapter);
+        mSimpleDetailTv.setText(bean.getSummary());
     }
 
     private void setMovieDetailInfo(MovieDetailBean bean) {

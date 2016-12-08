@@ -3,6 +3,7 @@ package com.zhixin.com.jsoup.ui.douban.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.zhixin.com.jsoup.R;
@@ -25,7 +26,9 @@ public class MovieDetailCastsAdapter extends BaseAdapter<MovieDetailBean.CastsBe
     @Override
     protected void convert(BaseViewHolder holder, MovieDetailBean.CastsBean data) {
         ImageView imageView = holder.getView(R.id.moview_detail_recyclerview_item_imageview);
+        TextView nameTv = holder.getView(R.id.moview_detail_recyclerview_item_tv);
         Picasso.with(mContext).load(data.getAvatars().getMedium()).error(R.mipmap.ic_launcher).config(Bitmap.Config.RGB_565).into(imageView);
+        nameTv.setText(data.getName());
     }
 
     @Override

@@ -5,4 +5,19 @@
     <dimen name="casts_images_count_tv">10dp</dimen>
 
     <dimen name="casts_images_count_tv_size">20sp</dimen>
+
+
+    <dimen name="recyclerview_item_margin_decoration">4dp</dimen>
+
+    <dimen name="one_code_text_size">20sp</dimen>//标题
+    <dimen name="two_code_text_size">18sp</dimen>//内容标题
+    <dimen name="three_code_text_size">16sp</dimen>//内容
+    <dimen name="three_code_text_size_two">14sp</dimen>
+    <dimen name="photo_normal_width">150dp</dimen>
+    <dimen name="photo_normal_height">200dp</dimen>
+    <dimen name="film_photo_width">180dp</dimen>
+    <dimen name="film_photo_height">240dp</dimen>
+    <dimen name="margin">16dp</dimen>
+
+
 </resources>

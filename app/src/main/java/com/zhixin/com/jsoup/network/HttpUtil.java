@@ -27,9 +27,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.HttpException;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * 网络工具封装类
@@ -41,12 +38,6 @@ public class HttpUtil {
     public static final int READ_TIMEOUT = 15;
 
 
-    static final Observable.Transformer mTransformer = new Observable.Transformer() {
-        @Override
-        public Object call(Object observable) {
-            return ((Observable) observable).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
-        }
-    };
 
 
     //Retrofit异常处理
@@ -62,15 +53,7 @@ public class HttpUtil {
         }
     }
 
-    //Rxjava操作符封装
-    public static <T> Observable.Transformer<T, T> composeResponse() {
-        return (Observable.Transformer<T, T>) mTransformer;
-    }
-
     public static <S> S createService(Class<S> serviceClass, String baseUrl) {
-//        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-//        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -92,7 +75,7 @@ public class HttpUtil {
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS) //
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS) //
                 .addInterceptor(mTokenInterceptor);
-//        //debug模式打印log
+        //是否打印log
         if (BuildConfig.LOG_DEBUG) {
             HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
             httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

@@ -71,7 +71,6 @@ public class SubscribeCall<T, V extends IBaseView> extends Subscriber<T> {
     }
 
 
-
     @Override
     public void onCompleted() {
         if (isSimpleSubscribe)
@@ -98,12 +97,13 @@ public class SubscribeCall<T, V extends IBaseView> extends Subscriber<T> {
 
     @Override
     public void onNext(T t) {
-        baseView.onSuccess(t);
         if (isSimpleSubscribe) {
             simpleSusbscribe.onNext(t);
+        } else {
+            baseView.onSuccess(t);
+            if (onNext != null)
+                onNext.call(t);
         }
-        else if(onNext!=null)
-            onNext.call(t);
     }
 
     interface SimpleSubscripbe<T> {

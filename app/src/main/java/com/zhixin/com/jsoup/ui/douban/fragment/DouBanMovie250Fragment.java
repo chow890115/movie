@@ -7,17 +7,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.zhixin.com.jsoup.R;
-import com.zhixin.com.jsoup.adapter.DoubanMoview250Adapter;
+import com.zhixin.com.jsoup.ui.douban.adapter.DoubanMoview250Adapter;
 import com.zhixin.com.jsoup.base.adapter.BaseAdapter;
 import com.zhixin.com.jsoup.base.adapter.BaseViewHolder;
 import com.zhixin.com.jsoup.base.fragment.BaseMvpFrgament;
-import com.zhixin.com.jsoup.data.Douban250Bean;
-import com.zhixin.com.jsoup.data.Douban250SubjectsBean;
+import com.zhixin.com.jsoup.ui.douban.entity.Douban250Bean;
+import com.zhixin.com.jsoup.ui.douban.entity.Douban250SubjectsBean;
 import com.zhixin.com.jsoup.tools.GlobalParams;
 import com.zhixin.com.jsoup.ui.douban.activity.MovieDetailActivity;
 import com.zhixin.com.jsoup.ui.douban.presenter.DouBan250Presenter;
 import com.zhixin.com.jsoup.ui.douban.scroll.FastGridLayoutManager;
-import com.zhixin.com.jsoup.ui.douban.view.DoubanView;
+import com.zhixin.com.jsoup.ui.douban.view.IDoubanView;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ import butterknife.OnClick;
  * Created by zhangwenxing on 2016/11/9.
  */
 
-public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan250Presenter> implements DoubanView<Douban250Bean>, SwipeRefreshLayout.OnRefreshListener {
+public class DouBanMovie250Fragment extends BaseMvpFrgament<IDoubanView, DouBan250Presenter> implements IDoubanView<Douban250Bean>, SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.fab)
     FloatingActionButton mFab;
     @BindView(R.id.douban_250_swipe_refresh)
@@ -43,7 +43,6 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<DoubanView, DouBan25
     void fabonclick() {
         if (mRecyclerView != null && mRecyclerView.getAdapter() != null) {
             mRecyclerView.smoothScrollToPosition(0);
-//            mRecyclerView.scrollTo(0, 0);
         }
     }
 
