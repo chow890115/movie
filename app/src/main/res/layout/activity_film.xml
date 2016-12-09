@@ -27,6 +27,28 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/activity_film_item_phooto"/>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/activity_film_item_phooto"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/film_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/photo_normal_height"
+                android:layout_margin="@dimen/margin"/>
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
 
 </LinearLayout>

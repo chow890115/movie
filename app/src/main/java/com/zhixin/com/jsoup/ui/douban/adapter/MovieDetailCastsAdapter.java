@@ -27,7 +27,10 @@ public class MovieDetailCastsAdapter extends BaseAdapter<MovieDetailBean.CastsBe
     protected void convert(BaseViewHolder holder, MovieDetailBean.CastsBean data) {
         ImageView imageView = holder.getView(R.id.moview_detail_recyclerview_item_imageview);
         TextView nameTv = holder.getView(R.id.moview_detail_recyclerview_item_tv);
-        Picasso.with(mContext).load(data.getAvatars().getMedium()).error(R.mipmap.ic_launcher).config(Bitmap.Config.RGB_565).into(imageView);
+        if (data.getAvatars().getLarge() != null && !data.getAvatars().getLarge().equals(""))
+            Picasso.with(mContext).load(data.getAvatars().getLarge()).placeholder(R.mipmap.image_loading).error(R.mipmap.image_error).config(Bitmap.Config.RGB_565).into(imageView);
+        else
+            imageView.setImageResource(R.mipmap.image_error);
         nameTv.setText(data.getName());
     }
 

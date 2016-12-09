@@ -1,6 +1,7 @@
 package com.zhixin.com.jsoup.ui.douban.activity;
 
 import android.graphics.Bitmap;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +24,8 @@ public class FilmActivity extends BaseMvpActivity<IFilmView<FilmBean>, FilmPrese
     ImageView mFilmIv;
     @BindView(R.id.file_info_tv)
     TextView mFileInfoTv;
+    @BindView(R.id.film_recycler)
+    RecyclerView mFilmPhotoRecycler;
 
     @Override
     protected FilmPresenter initPresenter() {
@@ -61,5 +64,4 @@ public class FilmActivity extends BaseMvpActivity<IFilmView<FilmBean>, FilmPrese
         sb.append("出生地:" + filmBean.getBorn_place() + "\n");
         mFileInfoTv.setText(sb.toString());
     }
-
 }

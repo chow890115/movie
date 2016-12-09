@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 网络工具封装类
  * Created by zhangwenxing on 16/9/7.
  */
-public class HttpUtil {
+public class RetrofitUtil {
     public static final int CONNECT_TIMEOUT = 15;
     public static final int WRITE_TIMEOUT = 15;
     public static final int READ_TIMEOUT = 15;

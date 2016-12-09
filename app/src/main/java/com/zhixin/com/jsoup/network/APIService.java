@@ -2,6 +2,7 @@ package com.zhixin.com.jsoup.network;
 
 
 import com.zhixin.com.jsoup.data.MovieDetailBean;
+import com.zhixin.com.jsoup.data.SplashBean;
 import com.zhixin.com.jsoup.ui.douban.entity.Douban250Bean;
 import com.zhixin.com.jsoup.ui.douban.entity.FilmBean;
 
@@ -29,4 +30,8 @@ public interface APIService {
     //影人详细信息 http://api.douban.com//v2/movie/celebrity/1025182
     @GET("/v2/movie/celebrity/{id}")
     Observable<FilmBean> getFilmDetailInfo(@Path("id") String id);
+
+    //splash图片  http://news-at.zhihu.com/api/5/start-image/1920*1080
+    @GET("/api/5/start-image/1920*1080")
+    Observable<SplashBean> getSplashImage();
 }

@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
+
+
+def releaseTime() {
+    return new Date().format("yyyyMMddHH", TimeZone.getTimeZone("UTC"))
+}
+
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
@@ -7,8 +13,8 @@ android {
         applicationId "com.zhixin.com.jsoup"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 10
+        versionName "1.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -21,6 +27,15 @@ android {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = "个人开源${defaultConfig.versionName}_${releaseTime()}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
         }
     }
 }
