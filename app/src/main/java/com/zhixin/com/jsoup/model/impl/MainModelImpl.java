@@ -1,7 +1,7 @@
 package com.zhixin.com.jsoup.model.impl;
 
 import com.zhixin.com.jsoup.model.MainModel;
-import com.zhixin.com.jsoup.network.TransformerUtil;
+import com.zhixin.com.jsoup.rx.TransformerUtil;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

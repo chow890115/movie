@@ -1,8 +1,8 @@
 package com.zhixin.com.jsoup.ui.douban.presenter;
 
 import com.zhixin.com.jsoup.base.presenter.BasePresenterImpl;
-import com.zhixin.com.jsoup.network.SubscribeCall;
-import com.zhixin.com.jsoup.network.TransformerUtil;
+import com.zhixin.com.jsoup.rx.SubscribeCall;
+import com.zhixin.com.jsoup.rx.TransformerUtil;
 import com.zhixin.com.jsoup.ui.douban.entity.Douban250Bean;
 import com.zhixin.com.jsoup.ui.douban.model.IDouban250Model;
 import com.zhixin.com.jsoup.ui.douban.model.impl.Douban250Model;

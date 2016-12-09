@@ -38,8 +38,6 @@ public class RetrofitUtil {
     public static final int READ_TIMEOUT = 15;
 
 
-
-
     //Retrofit异常处理
     public static void resolveError(Throwable e) {
         if (e instanceof HttpException) {
@@ -74,7 +72,9 @@ public class RetrofitUtil {
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS) //
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS) //
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS) //
-                .addInterceptor(mTokenInterceptor);
+                .addInterceptor(progressInterceptor);
+
+
         //是否打印log
         if (BuildConfig.LOG_DEBUG) {
             HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
@@ -134,13 +134,13 @@ public class RetrofitUtil {
     }
 
 
-    static Interceptor mTokenInterceptor = new Interceptor() {
+    static Interceptor progressInterceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request originalRequest = chain.request();
-            Request authorised = originalRequest.newBuilder()
-                    .build();
-            return chain.proceed(authorised);
+            Response originalResponse = chain.proceed(originalRequest);
+            Response response = originalResponse.newBuilder().body(new ProgressReponseBody(originalResponse.body())).build();
+            return response;
         }
     };
 

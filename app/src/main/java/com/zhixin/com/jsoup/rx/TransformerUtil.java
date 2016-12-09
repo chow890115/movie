@@ -1,4 +1,4 @@
-package com.zhixin.com.jsoup.network;
+package com.zhixin.com.jsoup.rx;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;

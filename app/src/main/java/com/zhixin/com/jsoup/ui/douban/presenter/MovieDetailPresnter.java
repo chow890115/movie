@@ -2,8 +2,8 @@ package com.zhixin.com.jsoup.ui.douban.presenter;
 
 import com.zhixin.com.jsoup.base.presenter.BasePresenterImpl;
 import com.zhixin.com.jsoup.data.MovieDetailBean;
-import com.zhixin.com.jsoup.network.SubscribeCall;
-import com.zhixin.com.jsoup.network.TransformerUtil;
+import com.zhixin.com.jsoup.rx.SubscribeCall;
+import com.zhixin.com.jsoup.rx.TransformerUtil;
 
 /**
  * Created by zhangstar on 2016/11/14.

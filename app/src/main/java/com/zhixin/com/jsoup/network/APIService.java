@@ -6,6 +6,7 @@ import com.zhixin.com.jsoup.data.SplashBean;
 import com.zhixin.com.jsoup.ui.douban.entity.Douban250Bean;
 import com.zhixin.com.jsoup.ui.douban.entity.FilmBean;
 
+import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -34,4 +35,7 @@ public interface APIService {
     //splash图片  http://news-at.zhihu.com/api/5/start-image/1920*1080
     @GET("/api/5/start-image/1920*1080")
     Observable<SplashBean> getSplashImage();
+
+    @GET("/app-debug.apk")
+    Observable<ResponseBody> downLoad();
 }

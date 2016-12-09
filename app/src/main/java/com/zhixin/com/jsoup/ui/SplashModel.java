@@ -2,7 +2,7 @@ package com.zhixin.com.jsoup.ui;
 
 import com.zhixin.com.jsoup.data.SplashBean;
 import com.zhixin.com.jsoup.network.RetrofitUtil;
-import com.zhixin.com.jsoup.network.TransformerUtil;
+import com.zhixin.com.jsoup.rx.TransformerUtil;
 import com.zhixin.com.jsoup.tools.GlobalParams;
 
 import rx.Observable;

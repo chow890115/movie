@@ -2,7 +2,7 @@ package com.zhixin.com.jsoup.ui;
 
 import com.zhixin.com.jsoup.base.presenter.BasePresenterImpl;
 import com.zhixin.com.jsoup.data.SplashBean;
-import com.zhixin.com.jsoup.network.SubscribeCall;
+import com.zhixin.com.jsoup.rx.SubscribeCall;
 
 /**
  * Created by zhangstar on 2016/12/8.

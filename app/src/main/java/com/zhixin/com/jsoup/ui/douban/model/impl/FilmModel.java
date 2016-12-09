@@ -1,7 +1,7 @@
 package com.zhixin.com.jsoup.ui.douban.model.impl;
 
 import com.zhixin.com.jsoup.network.RetrofitUtil;
-import com.zhixin.com.jsoup.network.TransformerUtil;
+import com.zhixin.com.jsoup.rx.TransformerUtil;
 import com.zhixin.com.jsoup.tools.GlobalParams;
 import com.zhixin.com.jsoup.ui.douban.entity.FilmBean;
 import com.zhixin.com.jsoup.ui.douban.model.IFilmModel;

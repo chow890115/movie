@@ -1,6 +1,7 @@
-package com.zhixin.com.jsoup.network;
+package com.zhixin.com.jsoup.rx;
 
 import com.zhixin.com.jsoup.base.view.IBaseView;
+import com.zhixin.com.jsoup.network.RetrofitUtil;
 
 import rx.Subscriber;
 import rx.functions.Action0;
