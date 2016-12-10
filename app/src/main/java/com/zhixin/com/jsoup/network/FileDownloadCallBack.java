@@ -33,7 +33,7 @@ public abstract class FileDownloadCallBack {
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-
+                Log.e("onerror", throwable.getMessage());
             }
         });
     }
@@ -47,7 +47,7 @@ public abstract class FileDownloadCallBack {
     }
 
     public void saveFile(ResponseBody body) {
-        Log.e("saveFile","开始保存" );
+        Log.e("saveFile", "开始保存");
         InputStream is = null;
         byte[] buf = new byte[2048];
         int len;
@@ -64,7 +64,7 @@ public abstract class FileDownloadCallBack {
                 fos.write(buf, 0, len);
             }
             fos.flush();
-            Log.e("saveFile","保存结束" );
+            Log.e("saveFile", "保存结束");
 //            unsubscribe();
             //onCompleted();
         } catch (FileNotFoundException e) {

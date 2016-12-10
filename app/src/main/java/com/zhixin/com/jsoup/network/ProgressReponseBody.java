@@ -21,6 +21,7 @@ public class ProgressReponseBody extends ResponseBody {
     private BufferedSource bufferedSource;
 
     public ProgressReponseBody(ResponseBody mResponseBody) {
+        android.util.Log.e("test", "mResponseBody");
         this.mResponseBody = mResponseBody;
     }
 
@@ -49,6 +50,7 @@ public class ProgressReponseBody extends ResponseBody {
 
             @Override
             public long read(Buffer sink, long byteCount) throws IOException {
+                android.util.Log.e("test", "source");
                 long bytesRead = super.read(sink, byteCount);
                 bytesReaded += bytesRead == -1 ? 0 : bytesRead;
                 android.util.Log.e("test", "body" + android.os.Process.myTid());
