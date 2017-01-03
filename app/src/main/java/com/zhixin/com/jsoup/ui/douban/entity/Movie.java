@@ -6,12 +6,12 @@ import java.util.List;
  * Created by zhangwenxing on 2016/11/10.
  */
 
-public class Douban250Bean {
+public class Movie {
     private int count;//一次请求多少条
     private int start;//第几条开始
     private int total;
     private String titile;
-    private List<Douban250SubjectsBean> subjects;
+    private List<Subject> subjects;
 
     public int getStart() {
         return start;
@@ -37,11 +37,11 @@ public class Douban250Bean {
         this.titile = titile;
     }
 
-    public List<Douban250SubjectsBean> getSubjects() {
+    public List<Subject> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(List<Douban250SubjectsBean> subjects) {
+    public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
     }
 

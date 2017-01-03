@@ -3,8 +3,8 @@ package com.zhixin.com.jsoup.network;
 
 import com.zhixin.com.jsoup.data.MovieDetailBean;
 import com.zhixin.com.jsoup.data.SplashBean;
-import com.zhixin.com.jsoup.ui.douban.entity.Douban250Bean;
 import com.zhixin.com.jsoup.ui.douban.entity.FilmBean;
+import com.zhixin.com.jsoup.ui.douban.entity.Movie;
 
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
@@ -22,7 +22,11 @@ public interface APIService {
 
     //豆瓣250
     @GET("/v2/movie/top250")
-    Observable<Douban250Bean> getDouban250Data(@Query("count") int count, @Query("start") int start);
+    Observable<Movie> getDouban250Data(@Query("count") int count, @Query("start") int start);
+
+    //正在热映
+    @GET("v2/movie/in_theaters")
+    Observable<Movie> getTheatersData(@Query("count") int count, @Query("start") int start);
 
     //某电影详情
     @GET("/v2/movie/subject/{id}")

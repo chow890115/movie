@@ -4,7 +4,7 @@ package com.zhixin.com.jsoup.ui.douban.entity;
  * Created by zhangwenxing on 2016/11/10.
  */
 
-public class DoubanImages {
+public class Images {
     private String small;//小图URL
     private String large;//大图URL；
     private String medium;//中图URL

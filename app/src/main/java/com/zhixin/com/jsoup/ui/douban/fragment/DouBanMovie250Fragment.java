@@ -7,14 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.zhixin.com.jsoup.R;
-import com.zhixin.com.jsoup.ui.douban.adapter.DoubanMoview250Adapter;
 import com.zhixin.com.jsoup.base.adapter.BaseAdapter;
 import com.zhixin.com.jsoup.base.adapter.BaseViewHolder;
 import com.zhixin.com.jsoup.base.fragment.BaseMvpFrgament;
-import com.zhixin.com.jsoup.ui.douban.entity.Douban250Bean;
-import com.zhixin.com.jsoup.ui.douban.entity.Douban250SubjectsBean;
 import com.zhixin.com.jsoup.tools.GlobalParams;
 import com.zhixin.com.jsoup.ui.douban.activity.MovieDetailActivity;
+import com.zhixin.com.jsoup.ui.douban.adapter.DoubanMoview250Adapter;
+import com.zhixin.com.jsoup.ui.douban.entity.Movie;
+import com.zhixin.com.jsoup.ui.douban.entity.Subject;
 import com.zhixin.com.jsoup.ui.douban.presenter.DouBan250Presenter;
 import com.zhixin.com.jsoup.ui.douban.scroll.FastGridLayoutManager;
 import com.zhixin.com.jsoup.ui.douban.view.IDoubanView;
@@ -28,7 +28,7 @@ import butterknife.OnClick;
  * Created by zhangwenxing on 2016/11/9.
  */
 
-public class DouBanMovie250Fragment extends BaseMvpFrgament<IDoubanView, DouBan250Presenter> implements IDoubanView<Douban250Bean>, SwipeRefreshLayout.OnRefreshListener {
+public class DouBanMovie250Fragment extends BaseMvpFrgament<IDoubanView, DouBan250Presenter> implements IDoubanView<Movie>, SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.fab)
     FloatingActionButton mFab;
     @BindView(R.id.douban_250_swipe_refresh)
@@ -73,7 +73,7 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<IDoubanView, DouBan2
     }
 
     @Override
-    public void onSuccess(Douban250Bean bean) {
+    public void onSuccess(Movie bean) {
         if (isLoadMore) {
             adapter.isLoading(false);
             adapter.setLoadMoreData(bean.getSubjects());
@@ -96,12 +96,12 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<IDoubanView, DouBan2
         }
     }
 
-    private void newAdapter(List<Douban250SubjectsBean> list) {
+    private void newAdapter(List<Subject> list) {
         adapter = new DoubanMoview250Adapter(context, list, true);
         adapter.setLoadingView(R.layout.recycler_foot_item);
-        adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListeners<Douban250SubjectsBean>() {
+        adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListeners<Subject>() {
             @Override
-            public void onItemClick(BaseViewHolder viewHolder, Douban250SubjectsBean data, int positon) {
+            public void onItemClick(BaseViewHolder viewHolder, Subject data, int position) {
                 Intent intent = new Intent(context, MovieDetailActivity.class);
                 intent.putExtra(GlobalParams.MOVIE_DETAIL, data.getId());
                 context.startActivity(intent);
@@ -125,7 +125,6 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<IDoubanView, DouBan2
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
                 if (dy > 0) {
                     mFab.show();
                 }
@@ -155,4 +154,5 @@ public class DouBanMovie250Fragment extends BaseMvpFrgament<IDoubanView, DouBan2
         start = 0;
         initData();
     }
+
 }

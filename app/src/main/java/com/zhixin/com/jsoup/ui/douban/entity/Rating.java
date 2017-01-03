@@ -7,7 +7,7 @@ package com.zhixin.com.jsoup.ui.douban.entity;
 /**
  * 豆瓣评分Bean
  */
-public class DoubanRating {
+public class Rating {
 private int max;//最高评分
     private int min;//最低评分
     private float average;//评分

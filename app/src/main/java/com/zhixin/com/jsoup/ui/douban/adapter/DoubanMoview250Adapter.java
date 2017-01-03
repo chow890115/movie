@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso;
 import com.zhixin.com.jsoup.R;
 import com.zhixin.com.jsoup.base.adapter.BaseAdapter;
 import com.zhixin.com.jsoup.base.adapter.BaseViewHolder;
-import com.zhixin.com.jsoup.ui.douban.entity.Douban250SubjectsBean;
+import com.zhixin.com.jsoup.ui.douban.entity.Subject;
 
 import java.util.List;
 
@@ -17,15 +17,15 @@ import java.util.List;
  * Created by zhangwenxing on 2016/11/10.
  */
 
-public class DoubanMoview250Adapter extends BaseAdapter<Douban250SubjectsBean> {
+public class DoubanMoview250Adapter extends BaseAdapter<Subject> {
 
 
-    public DoubanMoview250Adapter(Context context, List<Douban250SubjectsBean> datas, boolean isOpenLoadMore) {
+    public DoubanMoview250Adapter(Context context, List<Subject> datas, boolean isOpenLoadMore) {
         super(context, datas, isOpenLoadMore);
     }
 
     @Override
-    protected void convert(BaseViewHolder holder, Douban250SubjectsBean data) {
+    protected void convert(BaseViewHolder holder, Subject data) {
         ImageView imageView = holder.getView(R.id.movie250_recycler_item_title_iv);
         TextView tv = holder.getView(R.id.movie250_recycler_item_title_tv);
         RatingBar ratingBar = holder.getView(R.id.moview_250_ratingbar);

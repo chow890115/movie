@@ -1,8 +1,5 @@
 package com.zhixin.com.jsoup;
 
-import android.app.NotificationManager;
-import android.content.Context;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -17,10 +14,7 @@ import android.widget.ImageView;
 import com.zhixin.com.jsoup.base.activity.BaseActivity;
 import com.zhixin.com.jsoup.base.fragment.BaseFragment;
 import com.zhixin.com.jsoup.data.FQPhotoBean;
-import com.zhixin.com.jsoup.network.FileDownloadCallBack;
-import com.zhixin.com.jsoup.network.RetrofitUtil;
 import com.zhixin.com.jsoup.tools.GlobalParams;
-import com.zhixin.com.jsoup.tools.Tools;
 import com.zhixin.com.jsoup.ui.douban.fragment.DoubanHomeFragment;
 import com.zhixin.com.jsoup.ui.douban.fragment.PersonalFragment;
 
@@ -36,11 +30,9 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import okhttp3.ResponseBody;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -52,21 +44,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     DrawerLayout drawerLayout;
     private Map<String, Fragment> mFragmentMap;
     private String currentType;
-    private NotificationManager mManager;
+
 
     @Override
     public void initData() {
 //        final NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this);
-        mManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        android.util.Log.e("test", "main" + android.os.Process.myTid());
-        final FileDownloadCallBack callBack = new FileDownloadCallBack() {
-            @Override
-            public void updateProgress(long total, long progress) {
-                int totalInt = new Long(total).intValue();
-                int progressInt = new Long(progress).intValue();
-                android.util.Log.e("test", "updateProgress" + (int) ((double) progress / total * 100) + "%--totalInt--" + total);
-                android.util.Log.e("test", "FileDownloadCallBack" + android.os.Process.myTid());
-//                getSupportActionBar().setTitle((int) ((double) progress / total * 100) + "%");
+//        mManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+//        android.util.Log.e("main", "main" + android.os.Process.myTid());
+//        final FileDownloadCallBack callBack = new FileDownloadCallBack() {
+//            @Override
+//            public void updateProgress(long total, long progress) {
+//                int totalInt = new Long(total).intValue();
+//                int progressInt = new Long(progress).intValue();
+//                android.util.Log.e("test", "updateProgress" + (int) ((double) progress / total * 100) + "%--totalInt--" + total);
+//                android.util.Log.e("main", "FileDownloadCallBack" + android.os.Process.myTid());
 //                android.util.Log.e("test", "updateProgress" + (int) (double) progress / total * 100);
 //                NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this);
 //                builder.setSmallIcon(R.mipmap.ic_launcher);
@@ -83,33 +74,33 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 //                builder.setShowWhen(false);
 //                Notification notification = builder.build();
 //                mManager.notify(0, notification);
-            }
-        };
-        callBack.setPathAndName((Tools.checkSDCard() ? Tools.getExternalStoragePath() + "/Download/" : Environment.getRootDirectory() + "/Download/"), "test.apk");
-
-        RetrofitUtil.getApiService(GlobalParams.ZHIXIN_URL).downLoad().subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).doOnNext(new Action1<ResponseBody>() {
-            @Override
-            public void call(ResponseBody responseBody) {
-                android.util.Log.e("test", "doOnNext");
-                callBack.saveFile(responseBody);
-            }
-        }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<ResponseBody>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                android.util.Log.e("test", "onError");
-                RetrofitUtil.resolveError(e);
-            }
-
-            @Override
-            public void onNext(ResponseBody responseBody) {
-                android.util.Log.e("test", "onnext");
-            }
-        });
+//            }
+//        };
+//        callBack.setPathAndName((Tools.checkSDCard() ? Tools.getExternalStoragePath() + "/Download/" : Environment.getRootDirectory() + "/Download/"), "test.apk");
+//
+//        RetrofitUtil.getApiService(GlobalParams.ZHIXIN_URL).downLoad().subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).doOnNext(new Action1<ResponseBody>() {
+//            @Override
+//            public void call(ResponseBody responseBody) {
+//                android.util.Log.e("test", "doOnNext");
+//                callBack.saveFile(responseBody);
+//            }
+//        }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<ResponseBody>() {
+//            @Override
+//            public void onCompleted() {
+//
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                android.util.Log.e("test", "onError");
+//                RetrofitUtil.resolveError(e);
+//            }
+//
+//            @Override
+//            public void onNext(ResponseBody responseBody) {
+//                android.util.Log.e("test", "onnext");
+//            }
+//        });
     }
 
     //爬取数据
@@ -172,7 +163,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mNavigationView.setNavigationItemSelectedListener(this);
         mNavigationView.setCheckedItem(R.id.navigation_douban_movie);
         mFragmentMap = new HashMap<>();
-//        beginReplace(new DoubanHomeFragment(), "豆瓣");
+        beginReplace(new DoubanHomeFragment(), "豆瓣");
     }
 
     @Override

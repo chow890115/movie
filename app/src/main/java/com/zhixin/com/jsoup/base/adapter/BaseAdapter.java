@@ -63,9 +63,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
             case TYPE_EMPTY_VIEW:
                 viewHolder = BaseViewHolder.create(mEmptyView);
                 break;
-            case TYPE_DEFAULT_VIEW:
-                viewHolder = BaseViewHolder.create(new View(mContext));
-                break;
         }
         return viewHolder;
 
@@ -101,18 +98,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public int getItemViewType(int position) {
-        if (mDatas == null && mEmptyView != null) {
-            return TYPE_FOOTER_VIEW;
-        }
         if (isFooterView(position)) {
             return TYPE_FOOTER_VIEW;
         }
-        if (mDatas.isEmpty()) {
-            return TYPE_DEFAULT_VIEW;
-        }
-
         return TYPE_COMMON_VIEW;
-
     }
 
     @Override
@@ -127,6 +116,17 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
 
     private int getFootViewCount() {
         return mOpenLoadMore ? 1 : 0;
+    }
+
+    /**
+     *
+     */
+    private void setEmptyView(View view) {
+        mEmptyView = view;
+    }
+
+    public void setEmptyView(int emptyViewId) {
+        setEmptyView(LayoutInflater.from(mContext).inflate(emptyViewId, null));
     }
 
     /**
@@ -196,6 +196,12 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
 
     //是否正在加载中
     private boolean isLoading;
+    //请求数据源已经全部请求完毕
+    private boolean isEnd;
+
+    public void isEnd(boolean isEnd) {
+        this.isEnd = isEnd;
+    }
 
     public void isLoading(boolean isLoading) {
         this.isLoading = isLoading;
@@ -219,7 +225,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     //滑动静止
                     if (findLastVisibleItemPosition(layoutManager) + 1 == getItemCount()) {
-                        if (!isLoading) {
+                        if (!isLoading && !isEnd) {
                             //避免重复多次请求
                             scrollLoadMore();
                         }
@@ -333,8 +339,20 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
      * @param loadEndView
      */
     public void setLoadEndView(View loadEndView) {
-        mLoadEndView = loadEndView;
-        addFooterView(mLoadEndView);
+        if (loadEndView == null) {
+            return;
+        }
+        mLoadFailedView = loadEndView;
+        addFooterView(mLoadFailedView);
+        if (!isEnd) {
+            mLoadFailedView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addFooterView(mLoadingView);
+                    mLoadMoreListener.onLoadMore(true);
+                }
+            });
+        }
     }
 
     public void setLoadEndView(int loadEndId) {

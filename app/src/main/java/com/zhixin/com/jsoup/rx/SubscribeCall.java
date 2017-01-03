@@ -86,10 +86,10 @@ public class SubscribeCall<T, V extends IBaseView> extends Subscriber<T> {
     public void onError(Throwable e) {
 
         RetrofitUtil.resolveError(e);
-        baseView.onError();
         if (isSimpleSubscribe) {
             simpleSusbscribe.onError(e);
         } else {
+            baseView.onError();
             if (onError != null) {
                 onError.call(e);
             }

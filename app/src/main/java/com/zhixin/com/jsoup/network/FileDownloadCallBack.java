@@ -18,6 +18,8 @@ import rx.functions.Action1;
  */
 
 public abstract class FileDownloadCallBack {
+    int i = 1;
+
     public FileDownloadCallBack() {
         subscribe();
     }
@@ -33,7 +35,10 @@ public abstract class FileDownloadCallBack {
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                Log.e("onerror", throwable.getMessage());
+//                if (i != 2) {
+//                    Log.e("onerror", throwable.getMessage());
+//                    i++;
+//                }
             }
         });
     }

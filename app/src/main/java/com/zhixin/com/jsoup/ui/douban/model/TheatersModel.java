@@ -5,9 +5,10 @@ import com.zhixin.com.jsoup.ui.douban.entity.Movie;
 import rx.Observable;
 
 /**
- * Created by zhangwenxing on 2016/11/9.
+ * Created by zhangstar on 2016/12/30.
  */
 
-public interface IDouban250Model {
-    Observable<Movie> getDoubanMovie250(int start);
+public interface TheatersModel {
+    Observable<Movie> getTheatersData(int start);
+
 }

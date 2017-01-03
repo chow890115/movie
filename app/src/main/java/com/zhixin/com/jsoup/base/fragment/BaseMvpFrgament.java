@@ -2,6 +2,7 @@ package com.zhixin.com.jsoup.base.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
 import com.zhixin.com.jsoup.base.presenter.BasePresenterImpl;
 
 /**
@@ -10,11 +11,13 @@ import com.zhixin.com.jsoup.base.presenter.BasePresenterImpl;
 
 public abstract class BaseMvpFrgament<V, P extends BasePresenterImpl> extends BaseFragment {
     public P mPresenter;
+
     protected abstract P initPresenter();
 
+
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         mPresenter = initPresenter();
         mPresenter.attach((V) this);
     }

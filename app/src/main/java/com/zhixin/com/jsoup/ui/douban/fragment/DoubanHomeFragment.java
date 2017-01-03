@@ -36,13 +36,13 @@ public class DoubanHomeFragment extends BaseFragment {
         fragmentList = new ArrayList<BaseFragment>();
         mTabLayout.addTab(mTabLayout.newTab());
         mTabLayout.addTab(mTabLayout.newTab());
+        fragmentList.add(new TheatersFragment());
         fragmentList.add(new DouBanMovie250Fragment());
-        fragmentList.add(new PersonalFragment());
-        titles.add("豆瓣250");
-        titles.add("豆瓣电影");
+        titles.add("正在热映");
+        titles.add("Top250");
         mTabLayout.setupWithViewPager(mViewpager);
         DouBanHomePagerAdapter adpter = new DouBanHomePagerAdapter(getFragmentManager());
-        adpter.setData(fragmentList,titles);
+        adpter.setData(fragmentList, titles);
         mViewpager.setAdapter(adpter);
         mViewpager.setOffscreenPageLimit(fragmentList.size());
     }

@@ -10,6 +10,7 @@ import com.zhixin.com.jsoup.MainActivity;
 import com.zhixin.com.jsoup.R;
 import com.zhixin.com.jsoup.base.activity.BaseMvpActivity;
 import com.zhixin.com.jsoup.data.SplashBean;
+import com.zhixin.com.jsoup.tools.NetWorkUtil;
 
 import butterknife.BindView;
 
@@ -25,16 +26,13 @@ public class SplashActivity extends BaseMvpActivity<ISplashView<SplashBean>, Spl
 
     @Override
     public void initData() {
-        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-        SplashActivity.this.startActivity(intent);
-        finish();
-//        if (NetWorkUtil.isConnected(this)) {
-//            presenter.getSplashImage();
-//            return;
-//        }
-//
-//        mImageView.setImageResource(R.mipmap.original_splash);
-//        goToMain();
+        if (NetWorkUtil.isConnected(this)) {
+            presenter.getSplashImage();
+            return;
+        }
+
+        mImageView.setImageResource(R.mipmap.original_splash);
+        goToMain();
     }
 
     @Override

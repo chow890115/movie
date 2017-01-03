@@ -4,15 +4,15 @@ package com.zhixin.com.jsoup.ui.douban.entity;
  * Created by zhangwenxing on 2016/11/10.
  */
 
-public class Douban250SubjectsBean {
+public class Subject {
     private int id;//条目ID
     private String title;//中文名
     private String original_title;//原名
     private String alt;//条目URL
-    private DoubanImages images;//电影海报图
+    private Images images;//电影海报图
     private String year;//年代
     private String subtype;//条目分类 movie photo等
-    private DoubanRating rating;//豆瓣评分
+    private Rating rating;//豆瓣评分
 
     public int getId() {
         return id;
@@ -46,11 +46,11 @@ public class Douban250SubjectsBean {
         this.alt = alt;
     }
 
-    public DoubanImages getImages() {
+    public Images getImages() {
         return images;
     }
 
-    public void setImages(DoubanImages images) {
+    public void setImages(Images images) {
         this.images = images;
     }
 
@@ -70,11 +70,11 @@ public class Douban250SubjectsBean {
         this.subtype = subtype;
     }
 
-    public DoubanRating getRating() {
+    public Rating getRating() {
         return rating;
     }
 
-    public void setRating(DoubanRating rating) {
+    public void setRating(Rating rating) {
         this.rating = rating;
     }
 }

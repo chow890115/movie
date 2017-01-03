@@ -79,6 +79,7 @@ public class RxBus {
      */
     public <T> Subscription doSubscribe(Class<T> type, Action1<T> next, Action1<Throwable> error) {
         return tObservable(type)
+                .onBackpressureBuffer()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(next, error);
