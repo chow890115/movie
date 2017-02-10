@@ -32,24 +32,27 @@ public class DoubanHomeFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        List<String> titles = new ArrayList<>();
         fragmentList = new ArrayList<BaseFragment>();
         mTabLayout.addTab(mTabLayout.newTab());
         mTabLayout.addTab(mTabLayout.newTab());
-        fragmentList.add(new TheatersFragment());
-        fragmentList.add(new DouBanMovie250Fragment());
-        titles.add("正在热映");
-        titles.add("Top250");
+        mTabLayout.addTab(mTabLayout.newTab());
         mTabLayout.setupWithViewPager(mViewpager);
-        DouBanHomePagerAdapter adpter = new DouBanHomePagerAdapter(getFragmentManager());
-        adpter.setData(fragmentList, titles);
-        mViewpager.setAdapter(adpter);
-        mViewpager.setOffscreenPageLimit(fragmentList.size());
+        initData();
     }
 
     @Override
     protected void initData() {
-
+        List<String> titles = new ArrayList<>();
+        fragmentList.add(new TheatersFragment());
+        fragmentList.add(new CommingSoonFragment());
+        fragmentList.add(new DouBanMovie250Fragment());
+        titles.add("正在热映");
+        titles.add("即将上映");
+        titles.add("Top250");
+        DouBanHomePagerAdapter adpter = new DouBanHomePagerAdapter(getFragmentManager());
+        adpter.setData(fragmentList, titles);
+        mViewpager.setAdapter(adpter);
+        mViewpager.setOffscreenPageLimit(fragmentList.size());
     }
 
 }

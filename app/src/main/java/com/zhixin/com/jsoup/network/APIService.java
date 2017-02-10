@@ -42,4 +42,8 @@ public interface APIService {
 
     @GET("/app-debug.apk")
     Observable<ResponseBody> downLoad();
+
+    //即将上映
+    @GET("/v2/movie/coming_soon")
+    Observable<Movie> commingSoon(@Query("count") int count, @Query("start") int start);
 }

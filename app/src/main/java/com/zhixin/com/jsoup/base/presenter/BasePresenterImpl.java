@@ -27,6 +27,7 @@ public abstract class BasePresenterImpl<V> {
     public void onDestroy() {
         if (mCompositeSubscription != null) {
             mCompositeSubscription.unsubscribe();
+            mCompositeSubscription = null;
         }
     }
 }

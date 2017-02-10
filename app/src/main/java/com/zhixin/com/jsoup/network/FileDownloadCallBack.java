@@ -2,6 +2,7 @@ package com.zhixin.com.jsoup.network;
 
 import android.util.Log;
 
+import com.zhixin.com.jsoup.base.application.BaseApplication;
 import com.zhixin.com.jsoup.rx.RxBus;
 
 import java.io.File;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import okhttp3.ResponseBody;
+import rx.Subscription;
 import rx.functions.Action1;
 
 /**
@@ -27,7 +29,7 @@ public abstract class FileDownloadCallBack {
     public abstract void updateProgress(long total, long progress);
 
     private void subscribe() {
-        RxBus.getInstance().doSubscribe(FileDownload.class, new Action1<FileDownload>() {
+        Subscription sub = RxBus.getInstance().doSubscribe(FileDownload.class, new Action1<FileDownload>() {
             @Override
             public void call(FileDownload fileDownload) {
                 updateProgress(fileDownload.getTotal(), fileDownload.getBytesLoaded());
@@ -35,12 +37,10 @@ public abstract class FileDownloadCallBack {
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-//                if (i != 2) {
-//                    Log.e("onerror", throwable.getMessage());
-//                    i++;
-//                }
             }
         });
+
+        RxBus.getInstance().addSubscription(BaseApplication.getInstance(), sub);
     }
 
     private String destFileDir;
@@ -70,8 +70,6 @@ public abstract class FileDownloadCallBack {
             }
             fos.flush();
             Log.e("saveFile", "保存结束");
-//            unsubscribe();
-            //onCompleted();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             Log.e("saveFile", e.getMessage());
@@ -80,6 +78,7 @@ public abstract class FileDownloadCallBack {
             e.printStackTrace();
         } finally {
             try {
+                RxBus.getInstance().unSubscribe(BaseApplication.getInstance());
                 if (is != null) is.close();
                 if (fos != null) fos.close();
             } catch (IOException e) {

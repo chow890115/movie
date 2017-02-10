@@ -45,7 +45,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private Map<String, Fragment> mFragmentMap;
     private String currentType;
 
-
     @Override
     public void initData() {
 //        final NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this);

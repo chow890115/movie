@@ -30,14 +30,12 @@ public class SplashActivity extends BaseMvpActivity<ISplashView<SplashBean>, Spl
             presenter.getSplashImage();
             return;
         }
-
         mImageView.setImageResource(R.mipmap.original_splash);
         goToMain();
     }
 
     @Override
     public void initView() {
-
     }
 
     @Override
@@ -48,7 +46,8 @@ public class SplashActivity extends BaseMvpActivity<ISplashView<SplashBean>, Spl
 
     @Override
     public void onError() {
-
+        mImageView.setImageResource(R.mipmap.original_splash);
+        goToMain();
     }
 
     @Override
