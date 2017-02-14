@@ -60,7 +60,6 @@ public class CastsImagesActivity extends BaseActivity {
     @Override
     public void initView() {
         setSupportActionBar(mNormalToolBar);
-        getSupportActionBar().setTitle("演员");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mViewpager.setOffscreenPageLimit(3);
     }

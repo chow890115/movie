@@ -13,27 +13,13 @@ import android.widget.ImageView;
 
 import com.zhixin.com.jsoup.base.activity.BaseActivity;
 import com.zhixin.com.jsoup.base.fragment.BaseFragment;
-import com.zhixin.com.jsoup.data.FQPhotoBean;
-import com.zhixin.com.jsoup.tools.GlobalParams;
 import com.zhixin.com.jsoup.ui.douban.fragment.DoubanHomeFragment;
 import com.zhixin.com.jsoup.ui.douban.fragment.PersonalFragment;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     @BindView(R.id.toolBar)
@@ -102,50 +88,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 //        });
     }
 
-    //爬取数据
-    private void initJsoup() {
-        final List<FQPhotoBean> beanList = new ArrayList<>();
-        Observable.create(new Observable.OnSubscribe<List<FQPhotoBean>>() {
-            @Override
-            public void call(Subscriber<? super List<FQPhotoBean>> subscriber) {
-                try {
-                    Document document = Jsoup.connect(GlobalParams.BASE_URL).get();
-                    Elements listDiv = document.getElementsByAttributeValue("class", "portfolio-slideshow");
-                    for (Element element : listDiv) {
-                        Elements a = element.getElementsByTag("a");
-                        Elements imgUrl = element.getElementsByTag("img");
-                        FQPhotoBean bean = new FQPhotoBean();
-                        String href = a.attr("href");
-                        String src = imgUrl.attr("src");
-                        String title = imgUrl.attr("alt");
-                        bean.setHref(href);
-                        bean.setSrc(src);
-                        bean.setTitle(title);
-                        beanList.add(bean);
-                    }
-                    subscriber.onNext(beanList);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<List<FQPhotoBean>>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(List<FQPhotoBean> list) {
-
-            }
-        });
-    }
 
     @Override
     public void initView() {

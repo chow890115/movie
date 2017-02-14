@@ -23,6 +23,12 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
     public static final int TYPE_EMPTY_VIEW = 100003;
     public static final int TYPE_DEFAULT_VIEW = 100004;
     protected Context mContext;
+
+    public List<T> getDatas() {
+        return mDatas;
+    }
+
+
     protected List<T> mDatas;
     private View mLoadingView;
     private View mLoadFailedView;

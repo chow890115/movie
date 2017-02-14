@@ -11,5 +11,6 @@ public class GlobalParams {
     public static String ZHIHU_NEWS_URL = "http://news-at.zhihu.com/";
     public static String ZHIXIN_URL = "http://hengdawb-app.oss-cn-hangzhou.aliyuncs.com/";
     public static String MOVIE_DETAIL = "movieDetail";
+    public static String MOVIE_JSOUP = "https://movie.douban.com/subject/";
 
 }

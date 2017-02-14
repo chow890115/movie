@@ -25,7 +25,7 @@ public class SubscribeCall<T, V extends IBaseView> extends Subscriber<T> {
     }
 
 
-    public SubscribeCall(V baseView, SimpleSubscribe simpleSusbscribe) {
+    public SubscribeCall(V baseView, SimpleSubscribe<T> simpleSusbscribe) {
         this(baseView);
         this.simpleSusbscribe = simpleSusbscribe;
         isSimpleSubscribe = true;

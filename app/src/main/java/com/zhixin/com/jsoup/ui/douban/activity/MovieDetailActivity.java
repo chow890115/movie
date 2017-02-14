@@ -21,6 +21,7 @@ import com.zhixin.com.jsoup.data.MovieDetailBean;
 import com.zhixin.com.jsoup.tools.GlobalParams;
 import com.zhixin.com.jsoup.tools.RecyclerViewMarginDecoration;
 import com.zhixin.com.jsoup.ui.douban.adapter.MovieDetailCastsAdapter;
+import com.zhixin.com.jsoup.ui.douban.adapter.MovieDetailPhotosAdapter;
 import com.zhixin.com.jsoup.ui.douban.presenter.MovieDetailPresnter;
 import com.zhixin.com.jsoup.ui.douban.presenter.MovieDetailView;
 
@@ -51,6 +52,8 @@ public class MovieDetailActivity extends BaseMvpActivity<MovieDetailView, MovieD
     RecyclerView mHorizontalRecyclerview;
     @BindView(R.id.simple_detail_tv)
     TextView mSimpleDetailTv;
+    @BindView(R.id.photo_horizontal_recyclerview)
+    RecyclerView mPhotoHorizontalRecyclerview;
 
     @Override
     public void initData() {
@@ -62,7 +65,9 @@ public class MovieDetailActivity extends BaseMvpActivity<MovieDetailView, MovieD
     public void initView() {
         initToolBar();
         mHorizontalRecyclerview.setNestedScrollingEnabled(false);
+        mPhotoHorizontalRecyclerview.setNestedScrollingEnabled(false);
         mHorizontalRecyclerview.addItemDecoration(new RecyclerViewMarginDecoration(getResources().getDimensionPixelSize(R.dimen.recyclerview_item_margin_decoration)));
+        mPhotoHorizontalRecyclerview.addItemDecoration(new RecyclerViewMarginDecoration(getResources().getDimensionPixelSize(R.dimen.recyclerview_item_margin_decoration)));
     }
 
     private void initToolBar() {
@@ -137,4 +142,21 @@ public class MovieDetailActivity extends BaseMvpActivity<MovieDetailView, MovieD
         mMoviewDetailInfoTv.setText(sb.toString());
     }
 
+    @Override
+    public void setPhotos(List<String> images) {
+        mPhotoHorizontalRecyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        final MovieDetailPhotosAdapter adapter = new MovieDetailPhotosAdapter(this, images, false);
+        adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListeners<String>() {
+            @Override
+            public void onItemClick(BaseViewHolder viewHolder, String data, int position) {
+                Intent intent = new Intent(MovieDetailActivity.this, PhotosImagesActivity.class);
+                Bundle bundle = new Bundle();
+                intent.putExtra("position", position);
+                bundle.putSerializable("photos", (Serializable) adapter.getDatas());
+                intent.putExtras(bundle);
+                MovieDetailActivity.this.startActivity(intent);
+            }
+        });
+        mPhotoHorizontalRecyclerview.setAdapter(adapter);
+    }
 }

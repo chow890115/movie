@@ -18,6 +18,8 @@
 
         <activity android:name=".ui.douban.activity.MovieDetailActivity">
         </activity>
+        <activity android:name=".ui.douban.activity.PhotosImagesActivity">
+        </activity>
         <activity android:name=".ui.douban.activity.CastsImagesActivity">
         </activity>
         <activity android:name=".ui.douban.activity.FilmActivity">
